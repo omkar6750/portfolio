@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+.animate-spin-slow {
+	animation: spin 10s linear infinite;
+}
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+:root {
+	--bg-silver: #e8e8e8;
+}
+
+.cursor-none {
+	cursor: none;
+}
+
+@utility border-test {
+	@apply border-2 border-red-400;
+}
+
+@keyframes blob-move-1 {
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	33% {
+		transform: translate(30px, -50px) scale(1.1);
+	}
+	66% {
+		transform: translate(-20px, 20px) scale(0.9);
+	}
+	100% {
+		transform: translate(0, 0) scale(1);
+	}
+}
+@keyframes blob-move-2 {
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	33% {
+		transform: translate(-30px, 50px) scale(1.1);
+	}
+	66% {
+		transform: translate(20px, -20px) scale(0.9);
+	}
+	100% {
+		transform: translate(0, 0) scale(1);
+	}
+}
+@keyframes blob-move-3 {
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	50% {
+		transform: translate(-40px, 20px) scale(1.2);
+	}
+	100% {
+		transform: translate(0, 0) scale(1);
+	}
+}
+.animate-blob-1 {
+	animation: blob-move-1 15s infinite ease-in-out;
+}
+.animate-blob-2 {
+	animation: blob-move-2 18s infinite ease-in-out reverse;
+}
+.animate-blob-3 {
+	animation: blob-move-3 20s infinite ease-in-out;
+}
+
+.typing-effect {
+	border-right: 2px solid white;
+	white-space: nowrap;
+	overflow: hidden;
+	animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typing {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}
+@keyframes blink-caret {
+	from,
+	to {
+		border-color: transparent;
+	}
+	50% {
+		border-color: orange;
+	}
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.animate-blink {
+	animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+/* Utility to visually reset element transform on unmount */
+.magnetic {
+	will-change: transform;
+}
+
+/* Minimal helpful classes for the custom cursor to avoid layout jump */
+.cursor-dot {
+	position: fixed;
+	pointer-events: none;
+	z-index: 9999;
+	transform: translate(-50%);
+}
