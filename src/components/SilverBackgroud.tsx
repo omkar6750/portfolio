@@ -11,7 +11,6 @@ export const SilverMatteBackground: React.FC<SilverMatteBackgroundProps> = ({
 }) => {
 	const colorBlue = "bg-[#2A4B67]";
 	const colorGreen = "bg-[#509254]";
-	const colorPink = "bg-[#d9598d]";
 
 	return (
 		<div

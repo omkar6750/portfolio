@@ -11,7 +11,7 @@ export const HorizontalProjectCard: React.FC<{
 	project: FlattenedProject;
 	index: number;
 	id: string;
-}> = ({ project, index, id }) => {
+}> = ({ project, id }) => {
 	const bgColor =
 		categoryColors[project.category as keyof typeof categoryColors] ||
 		"bg-white";

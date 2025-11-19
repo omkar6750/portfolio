@@ -1,6 +1,5 @@
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
 import { Barcode } from "./Barcode";
-import type { DotLottie } from "@lottiefiles/dotlottie-react";
 
 interface CardProps {
 	className?: string;
