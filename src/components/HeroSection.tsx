@@ -44,18 +44,20 @@ export const HeroSection = () => {
 							// PROFESSIONAL_OVERVIEW
 						</p>
 						<p className="font-mono text-sm md:text-base leading-relaxed text-justify">
-							I’m a full-stack developer who enjoys
+							I&apos;m a full-stack developer who likes{" "}
 							<span className="font-bold">
 								visual design, clean code, and building products
-								end-to-end. problems, and turn ideas into real,
-								usable products.
-							</span>
-							<br />I work mostly with React and Next.js, and I
-							like improving UX through small details and
-							animations. I come from an electronics background,
-							which makes me naturally curious about how things
-							work—hardware or software. That curiosity drives how
-							I learn, experiment, solve
+								end-to-end.
+							</span>{" "}
+							I work mostly with React and Next.js and enjoy
+							improving UX through small details, motion, and
+							thoughtful interactions.
+							<br />
+							Studying systems and circuits made me naturally
+							curious about how things behave under the hood—from
+							hardware to the abstractions we build on top. That
+							curiosity shapes how I learn, experiment, and solve
+							problems.
 						</p>
 					</div>
 				</div>

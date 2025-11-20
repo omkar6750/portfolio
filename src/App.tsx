@@ -26,6 +26,7 @@ import { WorkExperience404 } from "./components/WorkExperience";
 import { HeroSection } from "./components/HeroSection";
 import { skills } from "./data/skills";
 import { ContactForm } from "./components/ContactForm";
+import { MobileProjectSection } from "./components/MobileProjectSection";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 
@@ -33,17 +34,10 @@ export default function App() {
 	const [activeTab, setActiveTab] = useState<string>("personal");
 
 	const handleDownloadResume = () => {
-		// 1. Define the file URL (relative to the public folder)
 		const pdfUrl = "/cv.pdf";
-
-		// 2. Create a temporary link element
 		const link = document.createElement("a");
 		link.href = pdfUrl;
-
-		// 3. Set the filename the user will see when saving
 		link.download = "omkar_pawar_cv.pdf";
-
-		// 4. Append to body, click, and remove
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);
@@ -170,19 +164,31 @@ export default function App() {
 					</div>
 				</div>
 
-				<HorizontalScrollSection
-					projectsMap={PROJECTS_DATA}
-					activeTab={activeTab}
-					setActiveTab={setActiveTab}
-				/>
+				{/* === DESKTOP HORIZONTAL SCROLL (Hidden on mobile) === */}
+				<div className="hidden md:block">
+					<HorizontalScrollSection
+						projectsMap={PROJECTS_DATA}
+						activeTab={activeTab}
+						setActiveTab={setActiveTab}
+					/>
+				</div>
+
+				{/* === MOBILE VERTICAL SCROLL (Hidden on desktop) === */}
+				<div className="block md:hidden">
+					<MobileProjectSection
+						projectsMap={PROJECTS_DATA}
+						activeTab={activeTab}
+						setActiveTab={setActiveTab}
+					/>
+				</div>
 
 				{/* New Work Experience Section */}
-				<section className=" flex items-center h-screen ">
+				<section className="flex items-center min-h-screen">
 					<WorkExperience404 />
 				</section>
 
-				<div className="max-w-7xl mx-auto px-4 md:px-8 pb-24 font-sans   h-screen">
-					<div className="md:col-span-12 min-h-[500px] mt-8 mb-12 ">
+				<div className="max-w-7xl mx-auto px-4 md:px-8 pb-24 font-sans h-auto md:h-screen">
+					<div className="md:col-span-12 h-auto md:min-h-[500px] mt-8 mb-12">
 						<Card
 							title="Comm_Link"
 							color="bg-[#a4cf4a]"
@@ -192,7 +198,8 @@ export default function App() {
 								"pune",
 								"banglore",
 							]}
-							className="h-full overflow-hidden "
+							// Changed h-full to h-auto on mobile to prevent clipping
+							className="h-auto md:h-full overflow-visible md:overflow-hidden"
 						>
 							<div
 								className="absolute inset-0 opacity-10 pointer-events-none"
@@ -202,52 +209,57 @@ export default function App() {
 									backgroundSize: "20px 20px",
 								}}
 							></div>
-							<div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full pt-4 relative z-10">
+							{/* Changed grid height to auto on mobile */}
+							<div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-full pt-4 pb-8 md:pb-0 relative z-10">
 								<div className="md:col-span-7 flex flex-col gap-6">
 									<ContactForm />
+
+									{/* Resume Button */}
 									<div className="flex items-end gap-4">
 										<div
-											className="group flex-1 border-2 border-black bg-[#208db4] p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer hover:-translate-y-1 transition-transform  relative z-50"
+											className="group flex-1 border-2 border-black bg-[#208db4] p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer hover:-translate-y-1 transition-transform relative z-50"
 											onClick={handleDownloadResume}
 										>
 											<div className="flex items-center gap-4">
 												<Save
-													size={48}
-													className="text-white"
+													// Smaller icon on mobile
+													size={32}
+													className="text-white w-8 h-8 md:w-12 md:h-12"
 													strokeWidth={1.5}
 												/>
 												<div className="flex flex-col">
-													<span className="font-black text-xl uppercase text-white leading-none">
+													<span className="font-black text-lg md:text-xl uppercase text-white leading-none break-all">
 														Omkar_CV.pdf
 													</span>
-													<span className="font-mono text-xs text-white/80">
+													<span className="font-mono text-[10px] md:text-xs text-white/80">
 														Updated 2024 // DOWNLOAD
 													</span>
 												</div>
-												<Download className="ml-auto text-white group-hover:animate-bounce " />
+												<Download className="ml-auto text-white group-hover:animate-bounce" />
 											</div>
 										</div>
 									</div>
 								</div>
-								<div className="md:col-span-5 flex flex-col gap-6">
+
+								<div className="md:col-span-5 flex  md:flex-col  gap-2 md:gap-6">
 									<div className="relative border-2 border-black bg-[#eef7be] p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
 										<div className="absolute -top-3 -right-3 bg-yellow-400 border-2 border-black px-2 font-bold text-xs rotate-12 z-20">
 											VERIFIED
 										</div>
 										<div className="flex gap-4">
-											<div className="w-24 h-32 border-2 border-black p-1 bg-gray-100 shrink-0">
+											<div className="w-20 h-28 md:w-24 md:h-32 border-2 border-black p-1 bg-gray-100 shrink-0">
 												<img
 													src="/images/omkar.jpg"
 													alt="User"
 													className="w-full h-full object-cover"
 												/>
 											</div>
-											<div className="flex flex-col justify-between w-full">
+											<div className="flex flex-col justify-between w-full overflow-hidden">
 												<div>
-													<h4 className="font-black text-xl uppercase leading-none mb-1">
+													<h4 className="font-black text-lg md:text-xl uppercase leading-none mb-1 truncate">
 														Omkar Pawar
 													</h4>
-													<p className="font-mono text-[10px] text-gray-500">
+													<p className="font-mono text-[10px] text-gray-500 truncate">
 														Kharghar, Navi Mumbai
 													</p>
 													<p className="font-mono text-[10px] text-gray-500">
@@ -258,7 +270,7 @@ export default function App() {
 													</p>
 												</div>
 												<Barcode
-													className="opacity-40"
+													className="opacity-40 w-full"
 													seed={"sdfsfbkewf"}
 												/>
 											</div>

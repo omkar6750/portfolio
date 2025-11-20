@@ -1,3 +1,5 @@
+import React from "react";
+
 interface SilverMatteBackgroundProps {
 	children: React.ReactNode;
 	className?: string;
@@ -14,8 +16,12 @@ export const SilverMatteBackground: React.FC<SilverMatteBackgroundProps> = ({
 
 	return (
 		<div
-			className={`relative w-full min-h-screen bg-[#E8E8E8] isolate overflow-x-hidden ${className} `}
+			// FIX: changed 'overflow-x-hidden' to 'md:overflow-x-hidden'
+			// Mobile: overflow is visible (allows sticky header to work)
+			// Desktop: overflow is hidden (hides the massive GSAP horizontal width)
+			className={`relative w-full min-h-screen bg-[#E8E8E8] isolate md:overflow-x-hidden ${className}`}
 		>
+			{/* === BACKGROUND GRID PATTERN === */}
 			<div
 				className="fixed inset-0 z-[-1] opacity-10 pointer-events-none"
 				style={{
@@ -24,6 +30,8 @@ export const SilverMatteBackground: React.FC<SilverMatteBackgroundProps> = ({
 					backgroundSize: "50px 50px",
 				}}
 			></div>
+
+			{/* === ANIMATED BLOBS === */}
 			<div className="fixed inset-0 overflow-hidden pointer-events-none">
 				{/* top left blob */}
 				<div
@@ -34,13 +42,17 @@ export const SilverMatteBackground: React.FC<SilverMatteBackgroundProps> = ({
 				<div
 					className={`absolute bottom-[10%] right-[-10%] w-[40vw] h-[40vw] rounded-full mix-blend-multiply filter blur-[80px] opacity-70 animate-blob-2 ${colorGreen}`}
 				></div>
+				{/* bottom left blob */}
 				<div
 					className={`absolute bottom-[-15%] left-[30%] w-[20vw] h-[20vw] rounded-full mix-blend-multiply filter blur-[80px] opacity-70 animate-blob-3 ${colorGreen}`}
 				></div>
+				{/* top center blob */}
 				<div
-					className={`absolute  top-[5%] right-[35%]  w-[30vw] h-[30vw] rounded-full mix-blend-multiply filter blur-[80px] opacity-80 animate-blob-2 ${colorBlue}`}
+					className={`absolute top-[5%] right-[35%] w-[30vw] h-[30vw] rounded-full mix-blend-multiply filter blur-[80px] opacity-80 animate-blob-2 ${colorBlue}`}
 				></div>
 			</div>
+
+			{/* === NOISE OVERLAY === */}
 			<div
 				className="fixed inset-0 pointer-events-none z-0 mix-blend-overlay"
 				style={{ opacity: noiseOpacity }}
@@ -62,7 +74,10 @@ export const SilverMatteBackground: React.FC<SilverMatteBackgroundProps> = ({
 				</svg>
 				<div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 bg-size-[100%_4px,6px_100%] pointer-events-none"></div>
 			</div>
+
+			{/* === CONTENT === */}
 			<div className="relative z-10 w-full h-full">{children}</div>
+
 			<style>{`
         @keyframes blob-move-1 { 0% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-50px) scale(1.1); } 66% { transform: translate(-20px,20px) scale(0.9); } 100% { transform: translate(0,0) scale(1); } }
         @keyframes blob-move-2 { 0% { transform: translate(0,0) scale(1); } 33% { transform: translate(-30px,50px) scale(1.1); } 66% { transform: translate(20px,-20px) scale(0.9); } 100% { transform: translate(0,0) scale(1); } }
