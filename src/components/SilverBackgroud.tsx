@@ -14,7 +14,7 @@ export const SilverMatteBackground: React.FC<SilverMatteBackgroundProps> = ({
 
 	return (
 		<div
-			className={`relative w-full min-h-screen bg-[#E8E8E8] isolate overflow-x-hidden ${className} cursor-none`}
+			className={`relative w-full min-h-screen bg-[#E8E8E8] isolate overflow-x-hidden ${className} `}
 		>
 			<div
 				className="fixed inset-0 z-[-1] opacity-10 pointer-events-none"

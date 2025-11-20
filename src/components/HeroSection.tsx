@@ -1,0 +1,65 @@
+const Y2KStar: React.FC<{ className?: string; fill?: string }> = ({
+	className,
+	fill = "currentColor",
+}) => (
+	<svg viewBox="0 0 100 100" className={className} fill={fill}>
+		<path d="M50 0 C50 0 60 40 100 50 C60 60 50 100 50 100 C50 100 40 60 0 50 C40 40 50 0 50 0 Z" />
+	</svg>
+);
+
+import React from "react";
+
+export const HeroSection = () => {
+	return (
+		<section className="min-h-screen flex flex-col justify-center relative mb-12 pt-20">
+			{/* Floating Elements */}
+			<Y2KStar className="absolute top-20 left-[10%] w-16 h-16 text-black animate-spin-slow opacity-80" />
+
+			{/* Main Grid Layout */}
+			<div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+				{/* Left Column: Name and Title */}
+				<div className="md:col-span-7 relative z-10 mix-blend-hard-light text-left">
+					<div className="flex items-center gap-4 mb-4">
+						<div className="h-0.5 w-10 bg-black"></div>
+						<span className="font-mono text-xs tracking-[0.3em] uppercase">
+							Navi Mumbai, IN
+						</span>
+					</div>
+
+					<h1 className="text-[15vw] md:text-[10vw] font-black tracking-tighter leading-[0.8] text-black select-none transform origin-left scale-y-125 inverse-hover">
+						OMKAR
+						<br />
+						PAWAR
+					</h1>
+
+					<p className="font-mono text-xs md:text-sm tracking-widest mt-8 bg-black text-white inline-block px-4 py-2 magnetic relative z-50">
+						FULL STACK DEVELOPER
+					</p>
+				</div>
+
+				{/* Right Column: Professional Summary */}
+				<div className="md:col-span-5 relative z-10 flex flex-col justify-end pb-4">
+					<div className="border-l-4 border-black pl-6 py-2">
+						<p className="font-bold uppercase text-xs mb-4 tracking-widest text-black">
+							// PROFESSIONAL_OVERVIEW
+						</p>
+						<p className="font-mono text-sm md:text-base leading-relaxed text-justify">
+							I’m a full-stack developer who enjoys
+							<span className="font-bold">
+								visual design, clean code, and building products
+								end-to-end. problems, and turn ideas into real,
+								usable products.
+							</span>
+							<br />I work mostly with React and Next.js, and I
+							like improving UX through small details and
+							animations. I come from an electronics background,
+							which makes me naturally curious about how things
+							work—hardware or software. That curiosity drives how
+							I learn, experiment, solve
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
+};

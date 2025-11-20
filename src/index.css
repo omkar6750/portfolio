@@ -11,10 +11,7 @@
 
 :root {
 	--bg-silver: #e8e8e8;
-}
-
-.cursor-none {
-	cursor: none;
+	scroll-behavior: smooth;
 }
 
 @utility border-test {

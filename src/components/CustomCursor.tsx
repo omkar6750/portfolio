@@ -1,43 +1,71 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export const CustomCursor: React.FC = () => {
 	const cursorRef = useRef<HTMLDivElement>(null);
-	const [isHovering, setIsHovering] = useState(false);
 	const activeMagnet = useRef<HTMLElement | null>(null);
+	const magnetText = useRef<HTMLElement | null>(null);
+	const [isDesktop, setIsDesktop] = useState(true);
 
-	// quickTo
+	// 1. Device Check
+	useEffect(() => {
+		const checkDevice = () => {
+			const isLargeScreen = window.innerWidth >= 768;
+			const hasMouse = window.matchMedia("(pointer: fine)").matches;
+			setIsDesktop(isLargeScreen && hasMouse);
+		};
+		checkDevice();
+		window.addEventListener("resize", checkDevice);
+		return () => window.removeEventListener("resize", checkDevice);
+	}, []);
+
+	// GSAP Setters
 	const xTo = useRef<gsap.QuickToFunc | null>(null);
 	const yTo = useRef<gsap.QuickToFunc | null>(null);
 	const widthTo = useRef<gsap.QuickToFunc | null>(null);
 	const heightTo = useRef<gsap.QuickToFunc | null>(null);
+	const radiusTo = useRef<gsap.QuickToFunc | null>(null); // We need this to match shape
 
-	// magnetic quickSetters
-	const magnetX = useRef<any>(null);
-	const magnetY = useRef<any>(null);
+	// Setter for the Element itself (to move it)
+	const magnetX = useRef<((value: number) => void) | null>(null);
+	const magnetY = useRef<((value: number) => void) | null>(null);
 
-	// cached rect
+	// Cache for the active element's position
 	const magnetRect = useRef<DOMRect | null>(null);
 
 	useGSAP(() => {
-		if (!cursorRef.current) return;
+		if (!isDesktop || !cursorRef.current) {
+			document.body.style.cursor = "auto";
+			return;
+		}
 
 		document.body.style.cursor = "none";
 
-		// quickTo for cursor
-		xTo.current = gsap.quickTo(cursorRef.current, "x", { duration: 0.06 });
-		yTo.current = gsap.quickTo(cursorRef.current, "y", { duration: 0.06 });
+		// Setup QuickTos
+		xTo.current = gsap.quickTo(cursorRef.current, "x", {
+			duration: 0.1,
+			ease: "power3.out",
+		});
+		yTo.current = gsap.quickTo(cursorRef.current, "y", {
+			duration: 0.1,
+			ease: "power3.out",
+		});
 		widthTo.current = gsap.quickTo(cursorRef.current, "width", {
-			duration: 0.2,
+			duration: 0.4,
+			ease: "power3.out",
 		});
 		heightTo.current = gsap.quickTo(cursorRef.current, "height", {
-			duration: 0.2,
+			duration: 0.4,
+			ease: "power3.out",
+		});
+		radiusTo.current = gsap.quickTo(cursorRef.current, "borderRadius", {
+			duration: 0.4,
+			ease: "power3.out",
 		});
 
-		// throttle
 		let last = 0;
-		const frameInterval = 1000 / 100; // ~100fps
+		const frameInterval = 1000 / 120;
 
 		const onPointerMove = (e: PointerEvent) => {
 			const now = performance.now();
@@ -46,18 +74,46 @@ export const CustomCursor: React.FC = () => {
 
 			const { clientX, clientY } = e;
 
-			if (!activeMagnet.current) {
+			// 1. NORMAL CURSOR (Not hovering)
+			if (!activeMagnet.current || !magnetRect.current) {
 				xTo.current?.(clientX);
 				yTo.current?.(clientY);
 				return;
 			}
 
-			const rect = magnetRect.current!;
-			const cX = rect.left + rect.width / 2;
-			const cY = rect.top + rect.height / 2;
+			// 2. MAGNETIC CURSOR (Hovering)
+			const rect = magnetRect.current;
+			const centerX = rect.left + rect.width / 2;
+			const centerY = rect.top + rect.height / 2;
 
-			magnetX.current?.((clientX - cX) * 0.25);
-			magnetY.current?.((clientY - cY) * 0.25);
+			// Calculate distance from center
+			const distx = clientX - centerX;
+			const disty = clientY - centerY;
+
+			// Physics: dampening factor (0.2)
+			// This calculates how much the BUTTON should move
+			const moveX = distx * 0.2;
+			const moveY = disty * 0.2;
+
+			// A. Move the Button
+			magnetX.current?.(moveX);
+			magnetY.current?.(moveY);
+
+			// B. Move the Cursor
+			// CRITICAL CHANGE: The cursor moves to the Center + the Button's movement.
+			// We do NOT add extra drift to the cursor. It stays locked to the button.
+			xTo.current?.(centerX + moveX);
+			yTo.current?.(centerY + moveY);
+
+			// C. Text Parallax (Text moves slightly more than button for depth)
+			if (magnetText.current) {
+				gsap.to(magnetText.current, {
+					x: moveX * 0.5, // Text moves relative to button
+					y: moveY * 0.5,
+					duration: 0.1,
+					overwrite: true,
+				});
+			}
 		};
 
 		const onPointerOver = (e: PointerEvent) => {
@@ -67,19 +123,28 @@ export const CustomCursor: React.FC = () => {
 			if (!target) return;
 
 			activeMagnet.current = target;
-			setIsHovering(true);
-
 			magnetRect.current = target.getBoundingClientRect();
+			magnetText.current = target.querySelector(
+				"span, p, div"
+			) as HTMLElement;
 
-			// quickSetters
-			magnetX.current = gsap.quickSetter(target, "x", "px");
-			magnetY.current = gsap.quickSetter(target, "y", "px");
+			// Get computed style to match border radius perfectly
+			const computedStyle = window.getComputedStyle(target);
+			const targetRadius = parseFloat(computedStyle.borderRadius);
 
-			const r = magnetRect.current!;
-			xTo.current?.(r.left + r.width / 2);
-			yTo.current?.(r.top + r.height / 2);
-			widthTo.current?.(r.width + 20);
-			heightTo.current?.(r.height + 20);
+			// Init setters for the target element
+			magnetX.current = gsap.quickSetter(target, "x", "px") as (
+				value: number
+			) => void;
+			magnetY.current = gsap.quickSetter(target, "y", "px") as (
+				value: number
+			) => void;
+
+			// Animate Cursor to MATCH Element EXACTLY
+			const r = magnetRect.current;
+			widthTo.current?.(r.width); // Exact width
+			heightTo.current?.(r.height); // Exact height
+			radiusTo.current?.(targetRadius); // Exact shape
 		};
 
 		const onPointerOut = (e: PointerEvent) => {
@@ -88,13 +153,32 @@ export const CustomCursor: React.FC = () => {
 			) as HTMLElement;
 			if (!target || target !== activeMagnet.current) return;
 
-			activeMagnet.current = null;
-			setIsHovering(false);
+			// Reset Target Element
+			gsap.to(target, {
+				x: 0,
+				y: 0,
+				duration: 0.4,
+				ease: "power3.out",
+				clearProps: "transform",
+			});
 
+			// Reset Text
+			if (magnetText.current) {
+				gsap.to(magnetText.current, {
+					x: 0,
+					y: 0,
+					duration: 0.4,
+					ease: "power3.out",
+				});
+			}
+
+			activeMagnet.current = null;
+			magnetText.current = null;
+
+			// Reset Cursor to Dot
 			widthTo.current?.(16);
 			heightTo.current?.(16);
-
-			gsap.to(target, { x: 0, y: 0, duration: 0.2 });
+			radiusTo.current?.(50); // Back to circle
 		};
 
 		window.addEventListener("pointermove", onPointerMove);
@@ -107,17 +191,19 @@ export const CustomCursor: React.FC = () => {
 			window.removeEventListener("pointerout", onPointerOut);
 			document.body.style.cursor = "auto";
 		};
-	}, []);
+	}, [isDesktop]);
+
+	if (!isDesktop) return null;
 
 	return (
 		<div
 			ref={cursorRef}
-			className={`fixed top-0 left-0 pointer-events-none z-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600
-        ${isHovering ? "opacity-30" : "opacity-100"}`}
+			className="fixed top-0 left-0 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 bg-red-600 mix-blend-difference"
 			style={{
 				width: 16,
 				height: 16,
-				willChange: "transform, width, height",
+				borderRadius: "50%",
+				willChange: "transform, width, height, border-radius",
 			}}
 		/>
 	);

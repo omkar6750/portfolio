@@ -214,15 +214,13 @@ export const HorizontalScrollSection: React.FC<
 				</div>
 			</div>
 
-			<div className="absolute top-1/2 w-full h-px bg-red-500/30 z-0 pointer-events-none"></div>
-
 			<div
 				className="h-full flex items-center pl-8 md:pl-24 w-full overflow-hidden"
 				ref={containerRef}
 			>
 				<div
 					ref={sectionRef}
-					className="flex items-center w-max pr-24 gap-3"
+					className="flex items-center w-max pr-24 gap-4"
 				>
 					{allProjects.map((project, idx) => (
 						<React.Fragment key={idx}>
@@ -242,11 +240,6 @@ export const HorizontalScrollSection: React.FC<
 							/>
 						</React.Fragment>
 					))}
-					<div className="shrink-0 w-[20vw] h-[50vh] flex items-center justify-center opacity-30">
-						<div className="text-4xl font-black transform -rotate-90">
-							END_OF_TAPE
-						</div>
-					</div>
 				</div>
 			</div>
 		</section>
