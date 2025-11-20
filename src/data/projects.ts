@@ -40,7 +40,7 @@ export const PROJECTS_DATA: ProjectsMap = {
 			longDescription:
 				"Circl is a proof-of-concept real-time messaging application built to test the limits of WebSocket scalability. It features a custom event bus that ensures message delivery even during network partitions. Redis is used for pub/sub across multiple Node.js instances, allowing the app to scale horizontally.",
 			liveUrl: undefined,
-			repoUrl: "https://github.com/username/circl-chat",
+			repoUrl: "https://github.com/omkar6750/Chat-app",
 			architectureImage: "",
 			gallery: [
 				"/images/clout2.png",
@@ -94,7 +94,7 @@ export const PROJECTS_DATA: ProjectsMap = {
 			longDescription:
 				"A browser-based RPG that leverages the Web Audio API for immersive soundscapes. The game state is persisted in local storage and synced to the cloud upon login, allowing users to switch devices seamlessly. The UI is built entirely with Tailwind CSS, ensuring a lightweight footprint.",
 			liveUrl: "https://hollow-pearl.vercel.app/",
-			repoUrl: "https://github.com/username/hollows-game",
+			repoUrl: "https://github.com/omkar6750/Hollow",
 			architectureImage: "",
 			gallery: [
 				"/images/hollow2.png",
@@ -121,7 +121,7 @@ export const PROJECTS_DATA: ProjectsMap = {
 			status: "wip",
 			longDescription:
 				"Designed for border security surveillance, this fixed-wing UAV features a custom-tuned PID controller running on the ArduPilot stack. It integrates a Raspberry Pi companion computer that processes video feeds in real-time using OpenCV to detect and track moving targets from 500ft altitude.",
-			repoUrl: "",
+			repoUrl: undefined,
 			architectureImage: "",
 			gallery: ["/images/uav-3.jpg", "/uav-2.mp4"],
 			challenges: [
