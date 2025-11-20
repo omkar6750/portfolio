@@ -23,8 +23,6 @@ import { CustomCursor } from "./components/CustomCursor";
 import { HorizontalScrollSection } from "./components/HorizontalScrollSection";
 import { PROJECTS_DATA } from "./data/projects";
 import { WorkExperience404 } from "./components/WorkExperience";
-import Lottie from "lottie-react";
-import reactLottie from "./public/reactlottie.json";
 import { HeroSection } from "./components/HeroSection";
 import { skills } from "./data/skills";
 import { ContactForm } from "./components/ContactForm";
@@ -134,12 +132,7 @@ export default function App() {
 												))}
 											</div>
 										</div>
-										<div style={{ width: "100px" }}>
-											<Lottie
-												animationData={reactLottie}
-												loop={true}
-											/>
-										</div>
+										<div style={{ width: "100px" }}></div>
 									</div>
 									<div>
 										<h5 className="font-black text-xs uppercase mb-2 flex items-center gap-1">
