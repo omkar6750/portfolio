@@ -237,7 +237,7 @@ export default function App() {
 										<div className="flex gap-4">
 											<div className="w-24 h-32 border-2 border-black p-1 bg-gray-100 shrink-0">
 												<img
-													src="/public/images/my-image2.jpg"
+													src="/public/images/omkar.jpg"
 													alt="User"
 													className="w-full h-full object-cover"
 												/>

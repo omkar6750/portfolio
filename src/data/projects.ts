@@ -142,7 +142,7 @@ export const PROJECTS_DATA: ProjectsMap = {
 			longDescription:
 				"This project bridges the communication gap for the mute community. Using a camera module connected to a Raspberry Pi, the system uses a quantized TensorFlow Lite model to classify hand gestures into text. The text is then displayed on an OLED screen and spoken aloud via a TTS engine.",
 			repoUrl: "https://github.com/username/sign-language-pi",
-			architectureImage: "/images/signlang/ml-pipeline.png",
+			architectureImage: "",
 			gallery: [],
 			challenges: [
 				"Quantizing the TensorFlow model while preserving accuracy for edge inference.",
