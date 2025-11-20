@@ -7,7 +7,7 @@ export const PROJECTS_DATA: ProjectsMap = {
 			type: "Personal",
 			description:
 				"AI-powered scraping tool reducing manual data collection by 70%. Orchestrates 10+ pipelines with automated insights.",
-			stack: ["Next.js", "Puppeteer", "AI Models", "React Flow"],
+			stack: ["Next.js", "Puppeteer", "AI analysis", "React Flow"],
 			year: "2025",
 			image: "/images/scrape-flow1.png",
 			status: "offline",
@@ -60,13 +60,13 @@ export const PROJECTS_DATA: ProjectsMap = {
 			type: "Freelance",
 			description:
 				"Production-grade e-commerce platform built with Next.js App Router. Features serverless APIs, DB pooling, and zero-downtime migrations.",
-			stack: ["Next.js", "Postgres", "Prisma", "Razorpay"],
-			year: "2024",
+			stack: ["Next.js", "Postgres", "Prisma", "Razorpay", "GSAP"],
+			year: "2025",
 			image: "/images/neo-tribe1.png",
 			status: "live",
 			longDescription:
 				"NeoTribe is a bespoke e-commerce solution developed for a boutique fashion brand. It moves away from Shopify limitations, offering a completely custom checkout flow and inventory management system. It utilizes Next.js Server Actions for type-safe backend mutations and Prisma for complex relation handling.",
-			liveUrl: "https://neotribe.store",
+			liveUrl: "https://neo-tribe.vercel.app/",
 			repoUrl: undefined,
 			architectureImage: "",
 			gallery: ["/images/neo-tribe2.png", "/images/neo-tribe3.png"],
