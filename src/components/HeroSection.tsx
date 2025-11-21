@@ -53,10 +53,10 @@ export const HeroSection = () => {
 
 		gsap.from(greetingSplit.chars, {
 			opacity: 0,
-			duration: 0.01, // Near instant appearance per character
-			stagger: 0.1, // Delay between each character (typing speed)
-			ease: "none", // Linear ease for mechanical feel
-			delay: 0.2, // Start just before the main title
+			duration: 0.01,
+			stagger: 0.1,
+			ease: "none",
+			delay: 0.2,
 		});
 	});
 
@@ -81,7 +81,7 @@ export const HeroSection = () => {
 
 					<h1
 						id="title"
-						className=" text-[15vw] md:text-[10vw] font-black tracking-tighter leading-[0.8] text-black select-none transform origin-left scale-y-125 inverse-hover"
+						className=" text-[14vw] md:text-[10vw] font-black tracking-tighter leading-[0.8] text-black select-none transform origin-left scale-y-125 inverse-hover"
 					>
 						OMKAR
 						<br />
@@ -104,7 +104,7 @@ export const HeroSection = () => {
 						</p>
 						<p
 							id="subtitle"
-							className="font-mono text-sm md:text-base leading-relaxed text-justify"
+							className="font-mono text-sm md:text-base leading-relaxed text-left max-w-[420px]"
 						>
 							<span className="font-bold block mb-4">
 								21 Y/O

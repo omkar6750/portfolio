@@ -14,6 +14,10 @@
 	scroll-behavior: smooth;
 }
 
+body {
+	font-family: "Roboto Mono", monospace;
+}
+
 @utility border-test {
 	@apply border-2 border-red-400;
 }
