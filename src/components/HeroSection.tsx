@@ -2,7 +2,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { MapPin } from "lucide-react";
-import React from "react";
 
 export const HeroSection = () => {
 	useGSAP(() => {
