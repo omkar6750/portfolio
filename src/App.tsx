@@ -27,8 +27,9 @@ import { HeroSection } from "./components/HeroSection";
 import { skills } from "./data/skills";
 import { ContactForm } from "./components/ContactForm";
 import { MobileProjectSection } from "./components/MobileProjectSection";
+import { SplitText } from "gsap/all";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin, SplitText);
 
 export default function App() {
 	const [activeTab, setActiveTab] = useState<string>("personal");

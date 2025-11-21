@@ -7,9 +7,59 @@ const Y2KStar: React.FC<{ className?: string; fill?: string }> = ({
 	</svg>
 );
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/all";
+import { MapPin } from "lucide-react";
 import React from "react";
 
 export const HeroSection = () => {
+	useGSAP(() => {
+		const heroSplit = new SplitText("#title", {
+			type: "chars, words",
+		});
+
+		const paragraphSplit = new SplitText("#subtitle", {
+			type: "lines",
+		});
+		const greetingSplit = new SplitText("#greeting", {
+			type: "chars",
+		});
+		heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
+
+		gsap.from(heroSplit.chars, {
+			yPercent: 100,
+			duration: 1.8,
+			ease: "expo.out",
+			stagger: 0.06,
+			opacity: 0,
+		});
+
+		gsap.from(paragraphSplit.lines, {
+			opacity: 0,
+			yPercent: 100,
+			duration: 1.8,
+			ease: "expo.out",
+			stagger: 0.06,
+			delay: 0.5,
+		});
+
+		gsap.from("#tag", {
+			opacity: 0,
+			y: 20,
+			ease: "power1.inOut",
+			delay: 0.6,
+		});
+
+		gsap.from(greetingSplit.chars, {
+			opacity: 0,
+			duration: 0.01, // Near instant appearance per character
+			stagger: 0.1, // Delay between each character (typing speed)
+			ease: "none", // Linear ease for mechanical feel
+			delay: 0.2, // Start just before the main title
+		});
+	});
+
 	return (
 		<section className="min-h-screen flex flex-col justify-center relative mb-12 pt-20">
 			{/* Floating Elements */}
@@ -21,18 +71,27 @@ export const HeroSection = () => {
 				<div className="md:col-span-7 relative z-10 mix-blend-hard-light text-left">
 					<div className="flex items-center gap-4 mb-4">
 						<div className="h-0.5 w-10 bg-black"></div>
-						<span className="font-mono text-xs tracking-[0.3em] uppercase">
-							Navi Mumbai, IN
+						<span
+							id="greeting"
+							className="font-mono text-3xl tracking-[0.3em] uppercase"
+						>
+							Hi I'm
 						</span>
 					</div>
 
-					<h1 className="text-[15vw] md:text-[10vw] font-black tracking-tighter leading-[0.8] text-black select-none transform origin-left scale-y-125 inverse-hover">
+					<h1
+						id="title"
+						className=" text-[15vw] md:text-[10vw] font-black tracking-tighter leading-[0.8] text-black select-none transform origin-left scale-y-125 inverse-hover"
+					>
 						OMKAR
 						<br />
 						PAWAR
 					</h1>
 
-					<p className="font-mono text-xs md:text-sm tracking-widest mt-8 bg-black text-white inline-block px-4 py-2 magnetic relative z-50">
+					<p
+						id="tag"
+						className="font-mono text-xs md:text-sm tracking-widest mt-8 bg-black text-white inline-block px-4 py-2 magnetic relative z-50"
+					>
 						FULL STACK DEVELOPER
 					</p>
 				</div>
@@ -43,21 +102,26 @@ export const HeroSection = () => {
 						<p className="font-bold uppercase text-xs mb-4 tracking-widest text-black">
 							// PROFESSIONAL_OVERVIEW
 						</p>
-						<p className="font-mono text-sm md:text-base leading-relaxed text-justify">
-							I&apos;m a full-stack developer who likes{" "}
+						<p
+							id="subtitle"
+							className="font-mono text-sm md:text-base leading-relaxed text-justify"
+						>
+							<span className="font-bold block mb-4">
+								21 Y/O
+								<span className="flex items-center  gap-2">
+									<MapPin size={16} /> Navi Mumbai, MH, India
+								</span>
+							</span>
+							I&apos;m a full-stack developer focused on{" "}
 							<span className="font-bold">
-								visual design, clean code, and building products
-								end-to-end.
-							</span>{" "}
-							I work mostly with React and Next.js and enjoy
-							improving UX through small details, motion, and
-							thoughtful interactions.
-							<br />
-							Studying systems and circuits made me naturally
-							curious about how things behave under the hood—from
-							hardware to the abstractions we build on top. That
-							curiosity shapes how I learn, experiment, and solve
-							problems.
+								React, Next.js, and end-to-end product design.
+							</span>
+							<br />I blend visual creativity with engineering
+							precision to build clean, motion-rich interfaces. My
+							background in systems and circuits gives me a unique
+							perspective on how software interacts with hardware,
+							driving me to build efficient and thoughtful
+							solutions.
 						</p>
 					</div>
 				</div>
