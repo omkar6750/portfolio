@@ -10,10 +10,11 @@ export const PROJECTS_DATA: ProjectsMap = {
 			stack: ["Next.js", "Puppeteer", "AI analysis", "React Flow"],
 			year: "2025",
 			image: "/images/scrape-flow1.png",
-			status: "offline",
+			status: "live",
 			longDescription:
 				"ScrapeFlow is an intelligent data extraction platform designed to handle dynamic web content that defeats traditional scrapers. It uses a node-based visual editor (React Flow) to define scraping logic, which is then executed by a fleet of headless browsers managed by Puppeteer. The extracted data is cleaned using LLMs before being piped into your database.",
-			liveUrl: undefined,
+			liveUrl:
+				"https://scrape-flow-git-main-omkar-santosh-pawars-projects.vercel.app/",
 			repoUrl: "https://github.com/username/scrapeflow",
 			architectureImage: "",
 			gallery: [

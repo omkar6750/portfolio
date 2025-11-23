@@ -90,8 +90,7 @@ export default function App() {
 										<ul className="list-disc list-inside text-xs space-y-2 font-bold text-black/80">
 											<li>
 												Secured college funding for
-												Autonomous UAV Project (Pitched
-												to 10+ faculty).
+												Autonomous UAV Project
 											</li>
 											<li>
 												1st Prize: Sci-Com Product
