@@ -54,6 +54,42 @@ export const PROJECTS_DATA: ProjectsMap = {
 				"Designing a lightweight auth and presence system that scales horizontally.",
 			],
 		},
+		{
+			name: "MovieRec – AI Semantic Movie Engine",
+			type: "Personal",
+			description:
+				"AI-powered semantic movie recommendation engine using local embeddings. Features secure OAuth, JWT sessions, vector search, and full CRUD user collections.",
+			stack: [
+				"React (Vite)",
+				"TypeScript",
+				"Node.js",
+				"Express",
+				"MongoDB",
+				"Transformers.js (Local AI)",
+				"JWT ",
+				"OAuth2",
+			],
+			year: "2025",
+			image: "/images/movierec1.png",
+			status: "live",
+			longDescription:
+				"MovieRec is a full-stack semantic movie recommendation platform built around local AI inference. Instead of keyword search, it generates 384-dimensional embeddings using @xenova/transformers.js to match user 'vibes' and moods with movie metadata. Authentication is implemented using a hybrid OAuth + JWT model, where Google verifies identity and the server issues a secure HttpOnly JWT session. User data such as favourites and watchlists is persisted in MongoDB, while the complete movie dataset is memory-loaded for instant search and filtering. The platform features protected routes, client & server validation, and a modern Shadcn UI interface.",
+			liveUrl: "https://movirec.netlify.app/",
+			repoUrl: "https://github.com/omkar6750/movirec",
+			architectureImage: "",
+			gallery: [
+				"/images/movierec2.png",
+				"/images/movierec3.png",
+				"/images/movierec4.png",
+			],
+			challenges: [
+				"Implementing local vector embeddings and cosine similarity search without relying on external AI APIs.",
+				"Designing a hybrid OAuth + JWT flow that avoids exposing Google access tokens and merges identity with server sessions.",
+				"Loading and indexing a full movie database in memory while keeping filtering, search, and sorting extremely fast.",
+				"Handling CORS + cookie flow across Netlify frontend and Render backend deployments.",
+				"Optimizing backend inference performance to prevent blocking the Node.js event loop.",
+			],
+		},
 	],
 	freelance: [
 		{
