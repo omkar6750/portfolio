@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
-import { MapPin } from "lucide-react";
+import { Code, MapPin } from "lucide-react";
 
 export const HeroSection = () => {
 	useGSAP(() => {
@@ -103,9 +103,9 @@ export const HeroSection = () => {
 					</h1>
 					<p
 						id="tag"
-						className="font-mono text-xs md:text-sm tracking-widest mt-12 md:mt-10 bg-black text-white inline-block px-4 py-2 magnetic relative z-50"
+						className=" font-mono  text-xs md:text-sm xl:text-xl mt-12 md:mt-10 bg-black text-white inline-flex gap-2 items-center px-4 py-2 magnetic relative z-50"
 					>
-						FULL STACK DEVELOPER
+						<Code size={16} /> FULL STACK DEVELOPER
 					</p>
 				</div>
 
