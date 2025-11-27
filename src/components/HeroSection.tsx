@@ -134,11 +134,12 @@ export const HeroSection = () => {
 							<span className="font-bold">
 								React, Next.js, and end-to-end product design.
 							</span>
-							<br className="hidden md:block" />I blend visual
-							creativity with engineering precision to build
-							clean, motion-rich interfaces. My background in
-							systems and circuits gives me a unique perspective
-							on how software interacts with hardware.
+							<br className="hidden md:block" />I build fast,
+							scalable, and visually polished products—combining
+							clean UI, smooth interactions, and reliable backend
+							systems. Always experimenting, always learning, and
+							always focused on shipping high-quality digital
+							experiences.
 						</p>
 					</div>
 				</div>
