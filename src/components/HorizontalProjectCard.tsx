@@ -84,7 +84,7 @@ export const HorizontalProjectCard: React.FC<{
 	const activeMedia = slides.length > 0 ? slides[currentSlide] : null;
 
 	return (
-		<div
+		<article
 			id={id}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
@@ -159,12 +159,16 @@ export const HorizontalProjectCard: React.FC<{
 								muted
 								loop
 								playsInline
+								itemProp="video"
 								className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
 							/>
 						) : (
 							<img
 								src={activeMedia?.url}
-								alt={`${project.name} slide ${currentSlide}`}
+								alt={`${project.name} user interface - slide ${
+									currentSlide + 1
+								}`}
+								itemProp="image screenshot"
 								className={`w-full h-full object-cover transition-all duration-700 
                 ${
 					activeMedia?.type === "arch"
@@ -202,7 +206,10 @@ export const HorizontalProjectCard: React.FC<{
 
 			{/* === TITLE & REPO === */}
 			<div className="flex justify-between items-start mb-2">
-				<h3 className="text-3xl font-black uppercase leading-[0.9] text-white stroke-black">
+				<h3
+					itemProp="name"
+					className="text-3xl font-black uppercase leading-[0.9] text-white stroke-black"
+				>
 					{project.name}
 				</h3>
 
@@ -210,7 +217,8 @@ export const HorizontalProjectCard: React.FC<{
 					<a
 						href={project.repoUrl}
 						target="_blank"
-						rel="noreferrer"
+						rel="noopener noreferrer"
+						aria-label={`View source code for ${project.name} on GitHub`}
 						className="flex shrink-0 bg-white text-black border-2 border-black p-1.5 
                        hover:bg-black hover:text-white transition-colors magnetic group/repo"
 						title="View Repository"
@@ -225,21 +233,24 @@ export const HorizontalProjectCard: React.FC<{
 			</div>
 
 			{/* DESCRIPTION */}
-			<p className="text-sm font-mono text-black/80 mb-4 line-clamp-3 font-medium">
+			<p
+				itemProp="description"
+				className="text-sm font-mono text-black/80 mb-4 line-clamp-3 font-medium"
+			>
 				{project.description}
 			</p>
 
 			{/* TECH STACK */}
-			<div className="flex flex-wrap gap-2 mb-auto">
+			<ul className="flex flex-wrap gap-2 mb-auto">
 				{project.stack.map((tech) => (
-					<span
+					<li
 						key={tech}
 						className="px-2 py-1 bg-white border border-black text-[10px] font-bold uppercase magnetic hover:bg-black hover:text-white transition-colors cursor-default"
 					>
 						{tech}
-					</span>
+					</li>
 				))}
-			</div>
+			</ul>
 
 			{/* === FOOTER LOGIC === */}
 			{isWIP ? (
@@ -258,6 +269,7 @@ export const HorizontalProjectCard: React.FC<{
 						<a
 							href={project.liveUrl}
 							target="_blank"
+							itemProp="url"
 							rel="noreferrer"
 							className="text-xs font-bold uppercase flex items-center gap-1 hover:underline magnetic group-hover:text-white"
 						>
@@ -274,6 +286,6 @@ export const HorizontalProjectCard: React.FC<{
 					)}
 				</div>
 			)}
-		</div>
+		</article>
 	);
 };

@@ -16,6 +16,9 @@ export const HeroSection = () => {
 		const greetingSplit = new SplitText("#greeting", {
 			type: "chars",
 		});
+		const professionalOveriewSplit = new SplitText("#overview", {
+			type: "chars",
+		});
 
 		// Add gradient class to chars
 		heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
@@ -51,62 +54,75 @@ export const HeroSection = () => {
 			ease: "none",
 			delay: 0.2,
 		});
+		gsap.from(professionalOveriewSplit.chars, {
+			opacity: 0,
+			duration: 0.01,
+			stagger: 0.05,
+			ease: "none",
+			delay: 0.2,
+		});
 	});
 
 	return (
 		<section className="min-h-screen flex flex-col justify-center relative mb-12 pt-20 overflow-hidden">
 			{/* Main Grid Layout */}
-			<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end w-full px-4 md:px-8">
+			<div className="grid grid-cols-1 lg:grid-cols-12 items-end lg:items-center w-full px-4 md:px-8  ">
 				{/* Left Column: Name and Title */}
 				{/* Changed md:col-span-7 to lg:col-span-7 to give more room on tablets */}
-				<div className="lg:col-span-7 relative z-10 mix-blend-hard-light text-left">
-					<div className="flex items-center gap-4 mb-4">
+				<div className="lg:col-span-7 relative z-10 mix-blend-hard-light text-left ">
+					<div className="flex items-center gap-4 mb-4 ">
 						<div className="h-0.5 w-10 bg-black"></div>
 						<span
 							id="greeting"
-							className="font-mono text-xl md:text-3xl tracking-[0.3em] uppercase"
+							className="font-mono text-xl md:text-3xl lg:text-4xl tracking-[0.3em] uppercase"
 						>
 							Hi I'm
 						</span>
 					</div>
 
-					{/* MAJOR FIXES HERE:
-             1. Removed VW units. Used strict Tailwind sizes (5xl -> 9xl).
-             2. flex-col to force stacking.
-             3. whitespace-nowrap to prevent letters breaking.
-             4. scale-y-125 maintained but handled with origin-left.
-          */}
-					<div
+					<h1
 						id="title"
-						className="flex flex-col font-black tracking-tighter text-black select-none origin-left transform scale-y-125"
+						aria-label="Omkar Pawar"
+						// Added leading-[0.8] here to keep lines tight
+						className="flex flex-col font-black leading-[0.8] tracking-tighter text-black select-none origin-left transform scale-y-125"
 					>
-						{/* Line 1 */}
-						<div className="hero-line whitespace-nowrap overflow-hidden leading-[0.9] text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+						<div
+							aria-hidden="true"
+							// CHANGE 1: Used arbitrary values [11rem] and [13rem] for massive text
+							className="hero-line whitespace-nowrap overflow-hidden text-6xl md:text-8xl lg:text-9xl xl:text-[11rem]"
+						>
 							OMKAR
 						</div>
-						{/* Line 2 */}
-						<div className="hero-line whitespace-nowrap overflow-hidden leading-[0.9] text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+						<div
+							aria-hidden="true"
+							// CHANGE 2: Matching size for second line
+							className="hero-line whitespace-nowrap overflow-hidden text-6xl md:text-8xl lg:text-9xl xl:text-[11rem]"
+						>
 							PAWAR
 						</div>
-					</div>
-
+					</h1>
 					<p
 						id="tag"
-						className="font-mono text-xs md:text-sm tracking-widest mt-12 md:mt-16 bg-black text-white inline-block px-4 py-2 magnetic relative z-50"
+						className="font-mono text-xs md:text-sm tracking-widest mt-12 md:mt-10 bg-black text-white inline-block px-4 py-2 magnetic relative z-50"
 					>
 						FULL STACK DEVELOPER
 					</p>
 				</div>
 
 				{/* Right Column: Professional Summary */}
-				<div className="lg:col-span-5 relative z-10 flex flex-col justify-end pb-4 mt-8 lg:mt-0">
+				<div className="lg:col-span-5 relative z-10 flex flex-col  justify-end pb-4 mt-8 lg:mt-0">
 					<div className="border-l-4 border-black pl-6 py-2">
-						<p className="font-bold uppercase text-xs mb-4 tracking-widest text-black">
+						<p
+							id="overview"
+							// CHANGE 3: Added lg:text-lg for larger screens
+							className="font-bold uppercase text-sm lg:text-lg xl:text-xl mb-4 tracking-widest text-black"
+						>
 							// PROFESSIONAL_OVERVIEW
 						</p>
 						<p
 							id="subtitle"
-							className="font-mono text-sm md:text-base leading-relaxed text-left max-w-full lg:max-w-[420px]"
+							// CHANGE 4: Increased body text slightly on large screens (lg:text-lg)
+							className="font-mono text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed text-left max-w-full "
 						>
 							<span className="font-bold block mb-4">
 								21 Y/O
