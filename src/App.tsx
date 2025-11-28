@@ -197,7 +197,7 @@ export default function App() {
 					<WorkExperience404 />
 				</section> */}
 
-				<div className="max-w-full justify-center mx-auto flex items-center border-test px-4 md:px-8 font-sans h-auto md:h-screen">
+				<div className="max-w-full justify-center mx-auto flex items-center  px-4 md:px-8 font-sans h-auto md:h-screen">
 					<div className="xl:min-w-7xl  h-auto md:min-h-[500px] mt-8 mb-12">
 						<Card
 							title="Comm_Link"
