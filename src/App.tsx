@@ -22,7 +22,6 @@ import { SilverMatteBackground } from "./components/SilverBackgroud";
 import { CustomCursor } from "./components/CustomCursor";
 import { HorizontalScrollSection } from "./components/HorizontalScrollSection";
 import { PROJECTS_DATA } from "./data/projects";
-import { WorkExperience404 } from "./components/WorkExperience";
 import { HeroSection } from "./components/HeroSection";
 import { skills } from "./data/skills";
 import { ContactForm } from "./components/ContactForm";
@@ -194,17 +193,17 @@ export default function App() {
 				</div>
 
 				{/* New Work Experience Section */}
-				<section className="flex items-center min-h-screen">
+				{/* <section className="flex items-center min-h-screen">
 					<WorkExperience404 />
-				</section>
+				</section> */}
 
-				<div className="max-w-7xl mx-auto px-4 md:px-8 pb-24 font-sans h-auto md:h-screen">
-					<div className="md:col-span-12 h-auto md:min-h-[500px] mt-8 mb-12">
+				<div className="max-w-full justify-center mx-auto flex items-center border-test px-4 md:px-8 font-sans h-auto md:h-screen">
+					<div className="xl:min-w-7xl  h-auto md:min-h-[500px] mt-8 mb-12">
 						<Card
 							title="Comm_Link"
 							color="bg-[#a4cf4a]"
 							tags={[
-								"Open to Work in:",
+								"Open to Work",
 								"mumbai",
 								"pune",
 								"banglore",
@@ -220,7 +219,7 @@ export default function App() {
 									backgroundSize: "20px 20px",
 								}}
 							></div>
-							{/* Changed grid height to auto on mobile */}
+
 							<div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-full pt-4 pb-8 md:pb-0 relative z-10">
 								<div className="md:col-span-7 flex flex-col gap-6">
 									<ContactForm />
@@ -233,7 +232,6 @@ export default function App() {
 										>
 											<div className="flex items-center gap-4">
 												<Save
-													// Smaller icon on mobile
 													size={32}
 													className="text-white w-8 h-8 md:w-12 md:h-12"
 													strokeWidth={1.5}
