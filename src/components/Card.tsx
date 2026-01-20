@@ -6,6 +6,7 @@ interface CardProps {
 	children?: React.ReactNode;
 	title?: string;
 	icon?: LucideIcon;
+	image?: string;
 	color?: string;
 	tags?: string[];
 }
@@ -15,6 +16,7 @@ export const Card: React.FC<CardProps> = ({
 	children,
 	title,
 	icon: Icon,
+	image,
 	color = "bg-white",
 	tags = [],
 }) => (
@@ -44,11 +46,17 @@ export const Card: React.FC<CardProps> = ({
 						</div>
 					)}
 				</div>
-				{Icon && (
+				{image ? (
+					<img
+						src={image}
+						alt={title}
+						className="w-14 h-14 object-contain bg-white border-2 border-black rounded-sm"
+					/>
+				) : Icon ? (
 					<div className="border-2 border-black p-1 rounded-full bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
 						<Icon size={24} className="text-black" />
 					</div>
-				)}
+				) : null}
 			</div>
 			<div className="grow relative">{children}</div>
 			<div className="mt-4 flex justify-between items-end">

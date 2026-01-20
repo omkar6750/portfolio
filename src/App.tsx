@@ -27,6 +27,7 @@ import { skills } from "./data/skills";
 import { ContactForm } from "./components/ContactForm";
 import { MobileProjectSection } from "./components/MobileProjectSection";
 import { SplitText } from "gsap/all";
+import { WorkExperience } from "./components/WorkExperience";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin, SplitText);
 
@@ -47,31 +48,31 @@ export default function App() {
 		<main>
 			<SilverMatteBackground>
 				<CustomCursor />
-				<div className="max-w-7xl lg:max-w-360   mx-auto px-4 md:px-8 pb-24 font-sans">
+				<div className="max-w-[70vw] lg:max-w-360   mx-auto px-4 md:px-8 pb-24 font-sans">
 					{/* --- HERO SECTION --- */}
 
 					<HeroSection />
-					<section className="min-h-screen flex items-center">
+					<section className=" flex items-center">
 						<div className=" grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-auto relative">
 							<div className="md:col-span-7 min-h-[400px] flex flex-col gap-8">
 								<Card
 									title="Education"
-									color="bg-[#FFC805]"
+									color="bg-[#FFC805]/60"
 									tags={["BE EXTC", "2022-2026"]}
 									className="text-black min-h-[400px]"
 								>
 									<div className="space-y-6 mt-4 font-mono">
 										<div className="relative flex pl-6 border-l-4 border-black">
 											<div className="">
-												<h4 className="text-xl font-black uppercase tracking-tight">
+												<h4 className="text-3xl font-black uppercase tracking-tighter text-black">
 													Atharva College of
 													Engineering
 												</h4>
-												<p className="text-sm font-bold mt-1">
+												<p className="text-base font-bold mt-1 text-lg text-black">
 													BE Electronics &
 													Telecommunication
 												</p>
-												<div className="flex justify-between text-xs font-bold mt-2 border-t border-black/20 pt-2">
+												<div className="flex justify-between text-sm font-bold mt-2 border-t border-black/20 pt-2 text-black">
 													<span>
 														Mumbai University
 													</span>
@@ -86,11 +87,11 @@ export default function App() {
 											/>
 										</div>
 										<div className="bg-white/50 p-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)]">
-											<h5 className="flex items-center gap-2 font-black uppercase text-sm mb-2">
+											<h5 className="flex items-center gap-2 font-black uppercase text-base mb-2 text-black">
 												<Award size={16} /> Key
 												Achievements
 											</h5>
-											<ul className="list-disc list-inside text-xs space-y-2 font-bold text-black/80">
+											<ul className="list-disc list-inside text-lg space-y-2 font-bold text-black">
 												<li>
 													Secured college funding for
 													Autonomous UAV Project
@@ -107,7 +108,7 @@ export default function App() {
 							<div className="md:col-span-5 min-h-[400px]">
 								<Card
 									title="Skills"
-									color="bg-[#FF7F3F]"
+									color="bg-[#FF7F3F]/60"
 									icon={Terminal}
 									tags={["Tech Stack"]}
 									className="text-black"
@@ -115,7 +116,7 @@ export default function App() {
 									<div className="space-y-6 mt-2">
 										<div className="flex items-center gap-7 ">
 											<div>
-												<h5 className="font-black text-xs uppercase mb-2 flex items-center gap-1">
+												<h5 className="font-black text-sm uppercase mb-2 flex items-center gap-1 text-black">
 													<Code size={12} /> Languages
 												</h5>
 												<ul className="flex flex-wrap gap-2">
@@ -123,11 +124,11 @@ export default function App() {
 														(t) => (
 															<li
 																key={t}
-																className="px-2 py-1 bg-white border-2 border-black text-[10px] font-bold hover:bg-red-500 hover:text-white transition-colors cursor-default magnetic relative z-50"
+																className="px-2 py-1 bg-white border-2 border-black  font-bold hover:bg-red-500 hover:text-white transition-colors cursor-default magnetic relative z-50"
 															>
 																{t}
 															</li>
-														)
+														),
 													)}
 												</ul>
 											</div>
@@ -136,14 +137,14 @@ export default function App() {
 											></div>
 										</div>
 										<div>
-											<h5 className="font-black text-xs uppercase mb-2 flex items-center gap-1">
+											<h5 className="font-black text-sm uppercase mb-2 flex items-center gap-1 text-black">
 												<Layers size={12} /> Frameworks
 											</h5>
 											<ul className="flex flex-wrap gap-2">
 												{skills.frameworks.map((t) => (
 													<li
 														key={t}
-														className="px-2 py-1 bg-white border-2 border-black text-[10px] font-bold hover:bg-black hover:text-white transition-colors cursor-default magnetic relative z-50"
+														className="px-2 py-1 bg-white border-2 border-black  font-bold hover:bg-black hover:text-white transition-colors cursor-default magnetic relative z-50"
 													>
 														{t}
 													</li>
@@ -151,7 +152,7 @@ export default function App() {
 											</ul>
 										</div>
 										<div>
-											<h5 className="font-black text-xs uppercase mb-2 flex items-center gap-1">
+											<h5 className="font-black text-sm uppercase mb-2 flex items-center gap-1 text-black">
 												<Cpu size={12} /> System & Tools
 											</h5>
 											<ul className="flex flex-wrap gap-2">
@@ -159,11 +160,11 @@ export default function App() {
 													(t) => (
 														<li
 															key={t}
-															className="px-2 py-1 bg-white border-2 border-black text-[10px] font-bold hover:bg-black hover:text-white transition-colors cursor-default magnetic relative z-50"
+															className="px-2 py-1 bg-white border-2 border-black  font-bold hover:bg-black hover:text-white transition-colors cursor-default magnetic relative z-50"
 														>
 															{t}
 														</li>
-													)
+													),
 												)}
 											</ul>
 										</div>
@@ -171,6 +172,10 @@ export default function App() {
 								</Card>
 							</div>
 						</div>
+					</section>
+					{/* New Work Experience Section */}
+					<section className="flex items-center min-h-screen">
+						<WorkExperience />
 					</section>
 				</div>
 
@@ -191,11 +196,6 @@ export default function App() {
 						setActiveTab={setActiveTab}
 					/>
 				</div>
-
-				{/* New Work Experience Section */}
-				{/* <section className="flex items-center min-h-screen">
-					<WorkExperience404 />
-				</section> */}
 
 				<div className="max-w-full justify-center mx-auto flex items-center  px-4 md:px-8 font-sans h-auto md:h-screen">
 					<div className="xl:min-w-7xl  h-auto md:min-h-[500px] mt-8 mb-12">
@@ -252,9 +252,6 @@ export default function App() {
 
 								<div className="md:col-span-5 flex  md:flex-col  gap-2 md:gap-6">
 									<div className="relative border-2 border-black bg-[#eef7be] p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-										<div className="absolute -top-3 -right-3 bg-yellow-400 border-2 border-black px-2 font-bold text-xs rotate-12 z-20">
-											VERIFIED
-										</div>
 										<div className="flex gap-4">
 											<div className="w-20 h-28 md:w-24 md:h-32 border-2 border-black p-1 bg-gray-100 shrink-0">
 												<img

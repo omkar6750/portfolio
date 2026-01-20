@@ -63,7 +63,7 @@ export const HorizontalScrollSection: React.FC<
 		if (!sectionRef.current) return;
 		const cards =
 			sectionRef.current.querySelectorAll<HTMLElement>(
-				'[id^="project-"]'
+				'[id^="project-"]',
 			);
 		const positions: CardPosition[] = [];
 		cards.forEach((card) => {
@@ -93,7 +93,7 @@ export const HorizontalScrollSection: React.FC<
 
 		// Find first card of category in pre-computed list
 		const targetCard = cardPositionsRef.current.find(
-			(p) => p.category === category
+			(p) => p.category === category,
 		);
 
 		if (targetCard) {
@@ -107,7 +107,7 @@ export const HorizontalScrollSection: React.FC<
 				// Clamp progress between 0 and 1
 				const progress = Math.max(
 					0,
-					Math.min(1, targetCard.left / scrollWidth)
+					Math.min(1, targetCard.left / scrollWidth),
 				);
 
 				const totalVerticalScroll = (st.end as number) - st.start;
@@ -183,7 +183,7 @@ export const HorizontalScrollSection: React.FC<
 				},
 			});
 		},
-		{ scope: triggerRef, dependencies: [allProjects] }
+		{ scope: triggerRef, dependencies: [allProjects] },
 	);
 
 	return (
@@ -201,7 +201,7 @@ export const HorizontalScrollSection: React.FC<
 						<button
 							key={tab.id}
 							onClick={() => handleTabClick(tab.id)}
-							className={`flex items-center gap-2 px-4 py-1 font-mono text-xs font-bold uppercase border border-black transition-all magnetic relative z-50 ${
+							className={`flex items-center gap-2 px-4 py-1 font-mono text-xl font-bold uppercase border border-black transition-all magnetic relative z-50 ${
 								activeTab === tab.id
 									? "bg-black text-white"
 									: "bg-white text-black hover:bg-gray-200"
@@ -228,7 +228,7 @@ export const HorizontalScrollSection: React.FC<
 								allProjects[idx - 1].category !==
 									project.category) && (
 								<div className="shrink-0 w-[5vw] md:w-[2vw] h-[60vh] border-l-2 border-dashed border-black/50 flex flex-col justify-center items-center mr-8">
-									<div className="rotate-90 font-mono text-xs font-bold tracking-widest text-gray-800 whitespace-nowrap">
+									<div className="rotate-90 font-mono text-xl font-bold tracking-widest text-gray-800 whitespace-nowrap">
 										// {project.category.toUpperCase()} ZONE
 									</div>
 								</div>

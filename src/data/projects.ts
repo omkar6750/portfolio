@@ -70,18 +70,14 @@ export const PROJECTS_DATA: ProjectsMap = {
 				"OAuth2",
 			],
 			year: "2025",
-			image: "/images/movierec1.png",
+			image: "",
 			status: "live",
 			longDescription:
 				"MovieRec is a full-stack semantic movie recommendation platform built around local AI inference. Instead of keyword search, it generates 384-dimensional embeddings using @xenova/transformers.js to match user 'vibes' and moods with movie metadata. Authentication is implemented using a hybrid OAuth + JWT model, where Google verifies identity and the server issues a secure HttpOnly JWT session. User data such as favourites and watchlists is persisted in MongoDB, while the complete movie dataset is memory-loaded for instant search and filtering. The platform features protected routes, client & server validation, and a modern Shadcn UI interface.",
 			liveUrl: "https://movirec.netlify.app/",
 			repoUrl: "https://github.com/omkar6750/movirec",
 			architectureImage: "",
-			gallery: [
-				"/images/movierec2.png",
-				"/images/movierec3.png",
-				"/images/movierec4.png",
-			],
+			gallery: [],
 			challenges: [
 				"Implementing local vector embeddings and cosine similarity search without relying on external AI APIs.",
 				"Designing a hybrid OAuth + JWT flow that avoids exposing Google access tokens and merges identity with server sessions.",

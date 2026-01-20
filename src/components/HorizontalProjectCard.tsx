@@ -8,14 +8,14 @@ import {
 	Radio,
 	Hammer,
 	Construction,
-	ImageOff, // Import the new icon
+	ImageOff,
 } from "lucide-react";
 import type { FlattenedProject } from "../types";
 
 export const categoryColors = {
-	freelance: "bg-[#7FC46A]",
-	personal: "bg-[#4F8FF7]",
-	academic: "bg-[#A78BFA]",
+	personal: "bg-[#4F8FF7]/60",
+	freelance: "bg-[#7FC46A]/60",
+	academic: "bg-[#A78BFA]/60",
 };
 
 // Helper to check if a URL is a video
@@ -75,7 +75,7 @@ export const HorizontalProjectCard: React.FC<{
 		e.stopPropagation();
 		if (slides.length > 0) {
 			setCurrentSlide((prev) =>
-				prev === 0 ? slides.length - 1 : prev - 1
+				prev === 0 ? slides.length - 1 : prev - 1,
 			);
 		}
 	};
@@ -235,7 +235,7 @@ export const HorizontalProjectCard: React.FC<{
 			{/* DESCRIPTION */}
 			<p
 				itemProp="description"
-				className="text-sm font-mono text-black/80 mb-4 line-clamp-3 font-medium"
+				className="text-lg font-mono text-black mb-4 line-clamp-3 font-medium"
 			>
 				{project.description}
 			</p>
@@ -245,7 +245,7 @@ export const HorizontalProjectCard: React.FC<{
 				{project.stack.map((tech) => (
 					<li
 						key={tech}
-						className="px-2 py-1 bg-white border border-black text-[10px] font-bold uppercase magnetic hover:bg-black hover:text-white transition-colors cursor-default"
+						className="px-2 py-1 bg-white border border-black text-[11px] font-bold uppercase magnetic hover:bg-black hover:text-white transition-colors cursor-default"
 					>
 						{tech}
 					</li>
@@ -271,7 +271,7 @@ export const HorizontalProjectCard: React.FC<{
 							target="_blank"
 							itemProp="url"
 							rel="noreferrer"
-							className="text-xs font-bold uppercase flex items-center gap-1 hover:underline magnetic group-hover:text-white"
+							className="text-sm font-bold uppercase flex items-center gap-1 hover:underline magnetic group-hover:text-white"
 						>
 							View Site
 							<Radio
@@ -280,7 +280,7 @@ export const HorizontalProjectCard: React.FC<{
 							/>
 						</a>
 					) : (
-						<span className="text-xs font-bold uppercase flex items-center gap-1 group-hover:text-white cursor-default opacity-60">
+						<span className="text-sm font-bold uppercase flex items-center gap-1 group-hover:text-white cursor-default opacity-60">
 							Case Study Only
 						</span>
 					)}
