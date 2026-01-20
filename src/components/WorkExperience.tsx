@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { Card } from "./Card";
-import { Briefcase } from "lucide-react";
 
 interface WorkExperienceItem {
 	id: number;
@@ -70,22 +68,11 @@ const experiences: WorkExperienceItem[] = [
 ];
 
 export const WorkExperience: React.FC = () => {
-	const [expandedId, setExpandedId] = useState<number | null>(null);
-
 	return (
 		<div className="max-w-[70vw] mx-auto   font-mono py-8">
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-				{experiences.map((exp, index) => (
-					<div
-						key={exp.id}
-						onMouseEnter={() =>
-							exp.expandable ? setExpandedId(index) : null
-						}
-						onMouseLeave={() =>
-							exp.expandable ? setExpandedId(null) : null
-						}
-						className="relative group"
-					>
+				{experiences.map((exp) => (
+					<div key={exp.id} className="relative group">
 						<Card
 							title={exp.company}
 							color={exp.color || "bg-[#FFEAA7]"} // default unified color
